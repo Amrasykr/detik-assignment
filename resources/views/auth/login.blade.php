@@ -1,13 +1,8 @@
 <x-guest-layout>
-    <div class="flex flex-col overflow-y-auto md:flex-row">
-        <div class="h-32 md:h-auto md:w-1/2">
-            <img aria-hidden="true" class="object-cover w-full h-full"
-                 src="{{ asset('images/login-office.jpeg') }}"
-                 alt="Office"/>
-        </div>
-        <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+    <div class="flex flex-col overflow-y-auto">
+        <div class="flex items-center justify-center p-6 w-full">
             <div class="w-full">
-                <h1 class="mb-4 text-xl font-semibold text-gray-700">
+                <h1 class="mb-4 text-2xl font-semibold text-gray-700">
                     Login
                 </h1>
 
@@ -56,12 +51,20 @@
                 <hr class="my-8"/>
 
                 @if (Route::has('password.request'))
+                <div class="flex justify-between">
                     <p class="mt-4">
                         <a class="text-sm font-medium text-primary-600 hover:underline"
                            href="{{ route('password.request') }}">
                             {{ __('Forgot your password?') }}
                         </a>
                     </p>
+                        <p class="mt-4">
+                        <a class="text-sm font-medium text-primary-600 hover:underline"
+                           href="{{ route('register') }}">
+                            {{ __('Register') }}
+                        </a>
+                    </p>
+                </div>
                 @endif
             </div>
         </div>

@@ -37,7 +37,7 @@
                 </x-responsive-nav-link>
             </li>
 
-            <li class="relative px-6 py-3">
+            {{-- <li class="relative px-6 py-3">
                 <x-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
                     <x-slot name="icon">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -86,7 +86,7 @@
                         </li>
                     </ul>
                 </template>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </aside>

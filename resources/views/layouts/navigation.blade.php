@@ -1,7 +1,7 @@
 <aside class="z-20 hidden w-64 overflow-y-auto bg-white md:block flex-shrink-0">
     <div class="py-4 text-gray-500">
         <a class="ml-6 text-lg font-bold text-gray-800" href="{{ route('dashboard') }}">
-            Windmill
+            Digital Library
         </a>
 
         <ul class="mt-6">
@@ -17,7 +17,7 @@
                 </x-nav-link>
             </li>
 
-            <li class="relative px-6 py-3">
+            {{-- <li class="relative px-6 py-3">
                 <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
                     <x-slot name="icon">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -69,7 +69,7 @@
                         </li>
                     </ul>
                 </template>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </aside>
