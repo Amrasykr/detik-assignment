@@ -11,7 +11,7 @@
     <div class="my-10">
         <div class="w-full shadow-lg rounded-xl">
                 <div class="sm:space-y-0 items-center justify-between p-4 bg-purple-200 ">
-                    <form action="" method="GET">
+                    <form action="{{ route('users.index') }}" method="GET">
                         <label for="table-search" class="sr-only text-tertiary">Search</label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none">

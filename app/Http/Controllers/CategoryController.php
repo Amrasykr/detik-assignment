@@ -5,44 +5,87 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
+
 class CategoryController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::paginate(5);
-        return view('pages.category.index', compact('categories'));
+        $search = $request->input('search');
+        $categoriesQuery = Category::query();
+
+        if ($search) {
+            $categoriesQuery->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            });
+        }
+
+        $categories = $categoriesQuery->paginate(5);
+        return view('pages.category.index', compact('categories', 'search'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    public function create()
+    {
+        return view('pages.category.create');
+    }
+
     public function store(Request $request)
     {
-        //
+        $validated_data = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $categories = Category::create([
+            'name' => $validated_data['name'],
+        ]);
+
+        if ($categories) {
+            notify()->success(message: 'Category Created Successfully');
+            return redirect()->route('categories.index');
+        } else {
+            notify()->error(message: 'Category Creation Failed');
+            return redirect()->route('categories.index');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('pages.category.edit', compact('category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $categories = Category::findOrFail($id);
+
+        $validated_data = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $categories->update([
+            'name' => $validated_data['name'],
+        ]);
+
+        if ($categories) {
+            notify()->success(message: 'Category Updated Successfully');
+            return redirect()->route('categories.index');
+        } else {
+            notify()->error(message: 'Category Update Failed');
+            return redirect()->route('categories.index');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $categories = Category::findOrFail($id);
+        $categories->delete();
+
+        if ($categories) {
+            notify()->success(message: 'Category Deleted Successfully');
+            return redirect()->route('categories.index');
+        } else {
+            notify()->error(message: 'Category Deletion Failed');
+            return redirect()->route('categories.index');
+        }
     }
 }

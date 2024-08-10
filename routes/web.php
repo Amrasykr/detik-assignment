@@ -30,16 +30,19 @@ Route::middleware('auth')->group(function () {
 
     // category routes
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+    Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::patch('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
     Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
     // book routes
     Route::get('/books', [BookController::class, 'index'])->name('books.index');
     Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
-    Route::post('/books', [BookController::class, 'store'])->name('books.store');
+    Route::post('/books/store', [BookController::class, 'store'])->name('books.store');
     Route::get('/books/{id}', [BookController::class, 'show'])->name('books.show');
     Route::get('/books/{id}/edit', [BookController::class, 'edit'])->name('books.edit');
-    Route::patch('/books/{id}', [BookController::class, 'update'])->name('books.update');
+    Route::patch('/books/{id}/update', [BookController::class, 'update'])->name('books.update');
     Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('books.destroy');
 });
 

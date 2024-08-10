@@ -3,14 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate(5);
+        $search = $request->input('search');
+        $usersQuery = User::where('role', 'user');
 
-        return view('pages.user.index', compact('users'));
+        if ($search) {
+            $usersQuery->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            });
+        }
+        $users = $usersQuery->paginate(5);
+
+        return view('pages.user.index', compact('users', 'search'));
     }
 
     public function destroy($id)
