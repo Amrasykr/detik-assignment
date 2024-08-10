@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('title', 'Main Dashboard')
+
 @section('header')
     <h2 class="text-3xl font-medium text-secondary">
-        Users
+        Categories
     </h2>
 @endsection
 
