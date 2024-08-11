@@ -17,10 +17,13 @@
             <td class="px-6 py-4 w-1/12">{{$book->quantity}}</td>
             <td class="px-6 py-4 w-1/4">{{ \Carbon\Carbon::parse($book->created_at)->translatedFormat('l, j F Y') }}</td>
             <td class="px-6 py-6 w-1/4 flex space-x-3 items-center">
-                <a href="/categories/{{$book->id}}/edit" class="font-medium text-yellow-600 hover:underline text-lg">
+                <a href="/books/{{$book->id}}/show" class="font-medium text-green-600 hover:underline text-lg">
+                        <i class="fas fa-eye"></i>
+                </a>
+                <a href="/books/{{$book->id}}/edit" class="font-medium text-yellow-600 hover:underline text-lg">
                     <i class="fas fa-edit"></i>
                 </a>
-                <form action="/categories/{{$book->id }}" method="POST">
+                <form action="/books/{{$book->id }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="font-medium text-red-600 hover:underline text-lg">

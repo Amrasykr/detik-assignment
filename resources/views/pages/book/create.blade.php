@@ -9,18 +9,34 @@
 @endsection
 @section('content')
 
-<div class="mb-10">
+<div class="my-10">
     <form class="w-full p-8 shadow-xl border border-purple-50 rounded-lg" enctype="multipart/form-data" method="POST" action="/books">
         @csrf
-        <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <div class="flex flex-wrap -mx-5 mb-3">
+            <div class="w-full px-3 md:mb-0">
                 <label for="name" class="block uppercase tracking-wide text-xs font-bold mb-2">Books Title</label>
                 <input id="name" name="name" type="text" value="{{ old('name') }}" class="appearance-none block w-full bg-purple-200 border-none @error('name') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight" >
                 @error('name')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror
             </div>
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        </div>
+        <div class="flex flex-wrap -mx-5 mb-3">
+            <div class="w-full md:w-1/2 px-3 md:mb-0">
+                <label for="category_id" class="block uppercase tracking-wide text-xs font-bold mb-2">Category</label>
+                <select id="category_id" name="category_id" class="appearance-none block w-full bg-purple-200 border-none @error('category_id') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight">
+                    <option value="">Select a category</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('category_id')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="w-full md:w-1/2 px-3 md:mb-0">
                 <label for="quantity" class="block uppercase tracking-wide text-xs font-bold mb-2">Quantity</label>
                 <input id="quantity" name="quantity" type="number" value="{{ old('quantity') }}" class="appearance-none block w-full bg-purple-200 border-none @error('name') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight" >
                 @error('quantity')
@@ -28,8 +44,8 @@
                 @enderror
             </div>
         </div>
-        <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <div class="flex flex-wrap -mx-5 mb-3">
+            <div class="w-full md:w-1/2 px-3 md:mb-0">
                 <label for="pdf_file" class="block uppercase tracking-wide text-xs font-bold mb-2">PDF File</label>
                 <input id="pdf_file" name="pdf_file" type="file" value="{{ old('name') }}" class="appearance-none block w-full bg-purple-200 border-none @error('name') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight" >
                 @error('pdf_file')
@@ -44,7 +60,7 @@
                 @enderror
             </div>
         </div>
-        <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="flex flex-wrap -mx-5 mb-6">
             <div class="w-full px-3 mb-6 md:mb-0">
                 <label for="description" class="block uppercase tracking-wide text-xs font-bold mb-2">Description</label>
                 <textarea id="description" name="description" rows="4" class="appearance-none block w-full bg-purple-200 border-none @error('description') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight">{{ old('description') }}</textarea>
