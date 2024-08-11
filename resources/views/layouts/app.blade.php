@@ -65,7 +65,12 @@
         <x-notify::notify />
     </div>
 
+    {{-- Chart --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    {{-- Ajax --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     @yield('script')
     @notifyJs
 </body>
