@@ -25,7 +25,19 @@
                         </select>
                     </div>
                 </form>
-                <div>
+                <div class="flex items-center">
+                    <div class="join me-3">
+                        <a href="/books/export/excel"
+                            class="px-3 py-2.5 bg-green-600 join-item text-white text-sm rounded-s-md">
+                            <i class="fa-solid fa-file-excel"></i>
+                            Excel
+                        </a>
+                        <a href="/books/export/pdf"
+                            class="px-3 py-2.5 bg-red-600 join-item text-white text-sm rounded-e-md">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            Pdf
+                        </a>
+                    </div>
                     <a href="/books/create" class="inline-flex items-center text-black bg-white outline font-medium rounded-md text-sm text-black/50 px-3 py-2">
                         <i class="fas text-black fa-plus mr-2"></i>
                         Create Books

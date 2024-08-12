@@ -44,6 +44,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/books/{id}/edit', [BookController::class, 'edit'])->name('books.edit');
     Route::patch('/books/{id}', [BookController::class, 'update'])->name('books.update');
     Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('books.destroy');
+    Route::get('/books/{id}/download', [BookController::class, 'download'])->name('books.download');
+    Route::get('/books/export/excel', [BookController::class, 'exportExcel'])->name('books.export.excel');
+    Route::get('/books/export/pdf', [BookController::class, 'exportPdf'])->name('books.export.pdf');
 });
 
 require __DIR__.'/auth.php';

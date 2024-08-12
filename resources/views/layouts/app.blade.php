@@ -26,7 +26,7 @@
     </style>
 </head>
 <body>
-    <div class="flex h-screen" :class="{ 'overflow-hidden': isSideMenuOpen }">
+    <div class="flex h-screen static" :class="{ 'overflow-hidden': isSideMenuOpen }">
         <!-- Desktop sidebar -->
         @include('layouts.navigation')
         <!-- Mobile sidebar -->
@@ -54,10 +54,15 @@
                         </button>
                         @yield('header')
                     </div>
-
                     @yield('content')
                 </div>
             </main>
+            <footer class="bottom-0 w-full h-20 bg-purple-600/95 text-white">
+                 <div class="mx-6 flex flex-col justify-center w-full h-full gap-1">
+                    <p class="text-sm">© 2024 Digital Library. All rights reserved.</p>
+                    <p class="text-xs">This project is an assignment for Detik.com, developed by Ammar Asysyakur.</p>
+                </div>
+            </footer>
         </div>
     </div>
 
@@ -70,7 +75,7 @@
 
     {{-- Ajax --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     @yield('script')
     @notifyJs
 </body>

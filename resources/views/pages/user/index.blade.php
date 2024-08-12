@@ -41,13 +41,17 @@
                             <td class="px-6 py-4 w-1/4">{{ $user->email }}</td>
                             <td class="px-6 py-4 w-1/4">{{ \Carbon\Carbon::parse($user->created_at)->translatedFormat('l, j F Y') }}</td>
                             <td class="px-6 py-6 w-24 flex space-x-3 items-center">
-                                <form action="/users/{{$user->id }}" method="POST">
+                                @if (auth()->user()->role == 'admin')
+                                <form action="/users/{{ $user->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="font-medium text-red-600 hover:underline text-lg">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </form>
+                            @else
+                                <span>-</span>
+                            @endif
                             </td>
                         </tr>
                         @empty

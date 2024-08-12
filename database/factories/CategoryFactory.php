@@ -21,11 +21,11 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->randomElement([
-                'Science Fiction',
-                'Romance',
-                'Mystery',
-                'Fantasy',
-                'Non-Fiction'
+                'programming',
+                'data science',
+                'phython',
+                'javascript',
+                'php',
             ]),
         ];
     }

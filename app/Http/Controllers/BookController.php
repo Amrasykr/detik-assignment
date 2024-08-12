@@ -7,6 +7,10 @@ use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
+use App\Exports\BookExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class BookController extends Controller
 {
@@ -159,4 +163,33 @@ class BookController extends Controller
         $book = Book::findOrFail($id);
         return view('pages.book.show', compact('book'));
     }
+
+    public function download($id)
+    {
+        $book = Book::findOrFail($id);
+
+        if ($book->pdf_file && File::exists(public_path('assets/book_files/' . $book->pdf_file))) {
+            return response()->download(public_path('assets/book_files/' . $book->pdf_file));
+        } else {
+            notify()->error(message: 'File not found.');
+            return redirect()->route('books.index');
+        }
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new BookExport, 'books.xlsx');
+    }
+
+    public function exportPdf()
+    {
+        $books = Book::with('category', 'user')->get();
+        $formattedBooks = $books->map(function($book) {
+            $book->created_at_formatted = Carbon::parse($book->created_at)->format('l j F Y');
+        return $book;
+        });
+        $pdf = PDF::loadView('exports.books', compact('formattedBooks'));
+        return $pdf->download('books.pdf');
+    }
+
 }

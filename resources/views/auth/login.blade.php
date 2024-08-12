@@ -49,8 +49,6 @@
                 </form>
 
                 <hr class="my-8"/>
-
-                @if (Route::has('password.request'))
                 <div class="flex justify-between">
                     <p class="mt-4">
                         <a class="text-sm font-medium text-primary-600 hover:underline"
@@ -65,7 +63,6 @@
                         </a>
                     </p>
                 </div>
-                @endif
             </div>
         </div>
     </div>
